@@ -1,0 +1,98 @@
+/* Stili Generali */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    padding: 15px 20px;
+    color: white;
+}
+
+.navbar {
+    display: flex; /* Usiamo Flexbox per allineare gli elementi */
+    justify-content: space-between; /* Sposta hamburger a sinistra e link a destra (o niente se solo hamburger) */
+    align-items: center;
+}
+
+/* Stile Hamburger Menu */
+.hamburger-menu {
+    cursor: pointer; /* Cambia il cursore per indicare che è cliccabile */
+    padding: 10px; /* Rende più facile cliccare */
+    z-index: 1000; /* Assicura che sia sopra gli altri elementi */
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px 0; /* Spazio tra le linee */
+    transition: 0.4s; /* Transizione per le animazioni future (apertura/chiusura) */
+}
+
+/* Stile del Menu di Navigazione */
+.nav-links {
+    list-style: none; /* Rimuove i pallini della lista */
+    margin: 0;
+    padding: 0;
+    display: flex; /* Per un layout orizzontale su schermi grandi */
+    
+    /* Per nascondere il menu su mobile inizialmente */
+    flex-direction: column; /* Mostra i link in colonna su mobile */
+    position: absolute; /* Posiziona il menu in modo assoluto */
+    top: 60px; /* Sotto l'header (regola in base all'altezza del tuo header) */
+    left: 0;
+    width: 100%;
+    background-color: #444; /* Colore di sfondo del menu aperto */
+    max-height: 0; /* Inizialmente alto 0 per nasconderlo */
+    overflow: hidden; /* Nasconde il contenuto che eccede max-height */
+    transition: max-height 0.4s ease-in-out; /* Animazione per l'apertura/chiusura */
+    z-index: 999; /* Sta sotto l'hamburger ma sopra il resto */
+}
+
+.nav-links.active { /* Classe aggiunta da JavaScript quando il menu è aperto */
+    max-height: 300px; /* Altezza massima per far apparire il menu (sufficientemente grande) */
+}
+
+
+.nav-links li {
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #555; /* Separatore tra i link */
+}
+
+.nav-links li:last-child {
+    border-bottom: none; /* Rimuove il separatore dall'ultimo elemento */
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none; /* Rimuove la sottolineatura */
+    display: block; /* Rende l'intera area del li cliccabile */
+}
+
+.nav-links a:hover {
+    background-color: #555;
+}
+
+/* Media Queries per schermi più grandi (desktop) */
+@media (min-width: 768px) { /* Applica questi stili se lo schermo è largo almeno 768px */
+    .hamburger-menu {
+        display: none; /* Nasconde l'hamburger su schermi grandi */
+    }
+
+    .nav-links {
+        position: static; /* Rimuove il posizionamento assoluto */
+        max-height: none; /* Mostra sempre il menu */
+        flex-direction: row; /* Mostra i link in riga */
+        background-color: transparent; /* Sfondo trasparente */
+        width: auto;
+        display: flex; /* Assicurati che sia flex anche su desktop */
+    }
+
+    .nav-links li {
+        border-bottom: none;
+        padding: 0 15px; /* Spazio orizzontale tra i link */
+    }
+}
